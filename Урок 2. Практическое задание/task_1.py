@@ -27,3 +27,46 @@
 Вы вместо трехзначного числа ввели строку (((. Исправьтесь
 Введите операцию (+, -, *, / или 0 для выхода):
 """
+
+from sys import exit
+
+def calc(list_of_symbols=list()):
+  if not list_of_symbols:
+    list_of_symbols.append(input('Введите операцию (+, -, *, / или 0 для выхода): '))
+    calc(list_of_symbols)
+  elif len(list_of_symbols) == 1:
+    if list_of_symbols[0] == '0':
+      exit()
+    elif list_of_symbols[0] in ['+', '-', '/', '*']:
+      list_of_symbols.append(input('Введите первое число: '))
+      calc(list_of_symbols)
+    else:
+      list_of_symbols[0] = input(f'Вместо нужного символа Вы ввели "{list_of_symbols[0]}". Исправьтесь: ')
+      calc(list_of_symbols)
+  elif len(list_of_symbols) == 2:
+    if list_of_symbols[1].isdigit():
+      list_of_symbols.append(input('Введите второе число: '))
+      calc(list_of_symbols)
+    else:
+      list_of_symbols[1] = input(f'Вместо числа Вы ввели "{list_of_symbols[1]}". Исправьтесь: ')
+      calc(list_of_symbols)
+  else:
+    if list_of_symbols[2].isdigit():
+      if list_of_symbols[0] != '/':
+        result = int(list_of_symbols[1])*int(list_of_symbols[2]) if list_of_symbols[0] == '*' else int(list_of_symbols[1])+int(list_of_symbols[2]) if list_of_symbols[0] == '+' else int(list_of_symbols[1])-int(list_of_symbols[2])
+        print(f'Результат: {result}')
+      else:
+        if int(list_of_symbols[2]) != 0:
+          result = int(list_of_symbols[1])/int(list_of_symbols[2])
+          print(f'Результат: {result}')
+        else:
+          print('На ноль делить нельзя')
+      list_of_symbols.clear()
+      calc(list_of_symbols)
+    else:
+      list_of_symbols[2] = input(f'Вместо числа Вы ввели "{list_of_symbols[2]}". Исправьтесь: ')
+      calc(list_of_symbols)
+      
+      
+if __name__ == '__main__':
+  calc()
