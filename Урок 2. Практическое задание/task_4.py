@@ -10,3 +10,17 @@
 Решите через рекурсию. В задании нельзя применять циклы.
 Нужно обойтисть без создания массива!
 """
+
+def count(ticker, digit=1, sum=1):
+  if ticker != 1:
+    digit *= -0.5
+    sum += digit
+    ticker -= 1
+    count(ticker, digit, sum)
+  else:
+    print(sum)
+
+
+if __name__ == '__main__':
+  col = int(input('Введите количество чисел: '))
+  count(col)
