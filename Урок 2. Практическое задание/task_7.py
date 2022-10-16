@@ -13,3 +13,16 @@
 
 Решите через рекурсию. В задании нельзя применять циклы.
 """
+
+def get_sum(count):
+  if count == 1:
+    return 1
+  return count + get_sum(count-1)
+
+
+if __name__ == '__main__':
+  digit = int(input('Введите число для проверки: '))
+  if get_sum(digit) == ((digit * (digit + 1)) / 2):
+    print('True')
+  else:
+    print('False')
