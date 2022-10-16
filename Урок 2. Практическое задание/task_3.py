@@ -18,3 +18,24 @@
 Не забудьте проверить на числе, которое оканчивается на 0.
 1230 -> 0321
 """
+
+def reverse_digit(digit, new_digit=str()):
+  if len(str(digit)) > 1:
+    number = digit % 10
+    if not new_digit and number == 0:
+      print('Число оканчивается на "0"')
+      digit = digit // 10
+      reverse_digit(digit)
+    else:
+      new_digit += str(number)
+      digit = digit // 10
+      reverse_digit(digit, new_digit)
+  else:
+    new_digit += str(digit)
+    print(f'Новое число: {new_digit}')
+    
+
+
+if __name__ == '__main__':
+  digit = int(input('Введи число: '))
+  reverse_digit(digit)
