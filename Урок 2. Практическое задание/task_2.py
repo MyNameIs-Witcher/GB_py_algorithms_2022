@@ -17,3 +17,24 @@
 Введите число: 123
 Количество четных и нечетных цифр в числе равно: (1, 2)
 """
+
+def parse_digit(digit, even = int(), odd = int()):
+  if len(str(digit)) > 1:
+    number = digit % 10
+    if number % 2 == 0:
+      even += 1
+    else:
+      odd += 1
+    digit = digit // 10
+    parse_digit(digit, even, odd)
+  else:
+    if digit % 2 == 0:
+      even += 1
+    else:
+      odd += 1
+    print(f'Количество четных и нечетных цифр в числе равно: ({even}, {odd})')
+
+
+if __name__ == '__main__':
+  digit = int(input('Введи число: '))
+  parse_digit(digit)
