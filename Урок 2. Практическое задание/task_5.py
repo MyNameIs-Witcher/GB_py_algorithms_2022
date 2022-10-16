@@ -19,3 +19,25 @@
 
 Допускается исп-е встроенных ф-ций
 """
+
+def ppr(start_p=32, finish_p=127, list_ASCII=list()):
+  if start_p < finish_p:
+    if len(list_ASCII) < 10:
+      list_ASCII.append({start_p: chr(start_p)})
+      start_p += 1
+      ppr(start_p, finish_p, list_ASCII)
+    else:
+      print(list_ASCII)
+      list_ASCII.clear()
+      ppr(start_p, finish_p, list_ASCII)
+  else:
+    if len(list_ASCII) < 10:
+      list_ASCII.append({start_p: chr(start_p)})
+      print(list_ASCII)
+    else:
+      print(list_ASCII)
+      print({start_p: chr(start_p)})
+
+
+if __name__ == '__main__':
+  ppr()
